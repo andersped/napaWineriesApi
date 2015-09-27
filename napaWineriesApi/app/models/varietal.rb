@@ -1,3 +1,4 @@
 class Varietal < ActiveRecord::Base
-	belongs_to :lists
+	has_many :lists, through: :offerings
+	has_many :offerings, dependent: :destroy
 end

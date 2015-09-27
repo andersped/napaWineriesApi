@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150926001543) do
+ActiveRecord::Schema.define(version: 20150926032407) do
 
   create_table "appelations", force: :cascade do |t|
     t.string   "name"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 20150926001543) do
     t.datetime "updated_at", null: false
     t.integer  "winery_id"
   end
+
+  create_table "offerings", force: :cascade do |t|
+    t.integer  "varietal_id"
+    t.integer  "list_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "offerings", ["list_id"], name: "index_offerings_on_list_id"
+  add_index "offerings", ["varietal_id"], name: "index_offerings_on_varietal_id"
 
   create_table "regions", force: :cascade do |t|
     t.string   "name"
@@ -59,6 +69,7 @@ ActiveRecord::Schema.define(version: 20150926001543) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "type_id"
+    t.integer  "list_id"
   end
 
   create_table "wineries", force: :cascade do |t|
